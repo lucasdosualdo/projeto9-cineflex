@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 export default function Movies () {
@@ -26,7 +27,10 @@ function Movie ({movie, key}) {
     return (
         <>
         <div className = 'movie'>
+            <Link to ={`/sessoes/${movie.id}`}>
             <img src = {movie.posterURL}/>
+            </Link>
+            
         </div>
         </>
     )
