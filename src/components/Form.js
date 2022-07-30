@@ -1,20 +1,25 @@
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-export default function Form () {
+export default function Form ({ids}) {
 const [name, setName]=useState('');
 const [cpf, setCpf]=useState('');
+let navigate= useNavigate();
 
     function handleForm (e) {
         e.preventDefault();
         const body = {
+            ids,
             name,
             cpf
         }
 
         const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', body);
-        request.then()
 
+        request.then(
+            navigate('/')
+        )
     }
     return (
         

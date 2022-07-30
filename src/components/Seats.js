@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export default function Seats({seat, available, id, key}) {
-    const [ids, setIds]=useState([]);
+export default function Seats({seat, available, id, ids, setIds, key}) {
+    
     if (available) {
         return (
             <SelectSeats
@@ -24,9 +24,17 @@ function SelectSeats ({seat, id, ids, setIds}) {
     const [select, setSelect]=useState(false);
     console.log(ids, 'seats')
 function teste () {
-    setSelect(!select)
-    setIds(ids.push(id))
-console.log(ids, 'teste')
+    if (!select) {
+        setSelect(!select)
+        setIds([...ids, id])
+        console.log(ids, 'adicionou')
+    } else {
+        setSelect(!select)
+        let newIds=ids.filter((value)=>value!==id)
+        setIds([...newIds])
+        console.log(ids, 'retirou')
+    }
+    
 }
     return (
         <>

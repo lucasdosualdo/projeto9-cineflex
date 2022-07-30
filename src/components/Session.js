@@ -10,6 +10,8 @@ export default function Session () {
     const [footerName, setFooterName]=useState({});
     const [footerDate, setFooterDate]=useState({});
     const [footerImage, setFooterImage]=useState({});
+    const [ids, setIds]=useState([]);
+    console.log(ids, 'session')
     const {idSessao} = useParams();
 
     useEffect(()=> {
@@ -34,6 +36,8 @@ export default function Session () {
                     available= {seat.isAvailable}
                     id={seat.id}
                     key={index}
+                    ids={ids}
+                    setIds={setIds}
                      />
                 )
             }
@@ -52,7 +56,7 @@ export default function Session () {
                 <p>Indisponível</p>
             </div>
         </div>
-        <Form />
+        <Form ids = {ids}/>
         <Footer>
         <div className = 'image-footer'>
             <img src = {footerImage.posterURL} />
