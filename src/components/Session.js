@@ -1,15 +1,24 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
+import Form from './Form';
+import Seats from './Seats';
+import Footer from './Footer';
 
 export default function Session () {
     const [seats, setSeats]=useState([]);
+    const [footerName, setFooterName]=useState({});
+    const [footerDate, setFooterDate]=useState({});
+    const [footerImage, setFooterImage]=useState({});
     const {idSessao} = useParams();
 
     useEffect(()=> {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
         promise.then(response =>{
             setSeats(response.data.seats);
+            setFooterName(response.data);
+            setFooterDate(response.data.day);
+            setFooterImage(response.data.movie);
         } )
     }, [])
     return (
@@ -23,48 +32,38 @@ export default function Session () {
                     <Seats
                     seat = {seat.name}
                     available= {seat.isAvailable}
+                    id={seat.id}
                     key={index}
                      />
                 )
             }
         </div>
+        <div className='example'>
+            <div>
+                <div className='seat selected'></div>
+                <p>Selecionado</p>
+            </div>
+            <div>
+                <div className='seat'></div>
+                <p>Disponível</p>
+            </div>
+            <div>
+                <div className='seat unavailable'></div>
+                <p>Indisponível</p>
+            </div>
+        </div>
+        <Form />
+        <Footer>
+        <div className = 'image-footer'>
+            <img src = {footerImage.posterURL} />
+            </div>
+            <div>
+            <h2>{footerImage.title}</h2>
+            <h2>{footerDate.weekday} - {footerName.name}</h2>
+            </div> 
+        </Footer>
+
         </>
     )
 }
 
-function Seats({seat, available, key}) {
-
-    if (available) {
-        return (
-            <SelectSeats
-            seat = {seat}
-            />
-        )
-    } else {
-        return (
-            <>
-            <div className='unavailable'>
-                {seat}
-            </div>
-            </>
-        )
-    }
-    
-}
-
-function SelectSeats ({seat}) {
-    const [select, setSelect]=useState(false);
-    return (
-        <>
-          {
-            !select ?
-            (<div className='seat' onClick={()=>setSelect(!select)}>
-            {seat}
-        </div>) :
-        (<div className='seat selected' onClick={()=>setSelect(!select)}>
-        {seat}
-    </div>)
-        }
-        </>     
-    )
-}

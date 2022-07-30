@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {useParams, Link} from 'react-router-dom';
+import Footer from './Footer';
 
 export default function SelectedMovie () {
     const [days, setDays]= useState([]);
@@ -29,8 +30,12 @@ export default function SelectedMovie () {
              />   
              )}
         </div>
-        <Footer
-        footerFilm = {footerFilm}/>
+        <Footer>
+            <div className = 'image-footer'>
+            <img src = {footerFilm.posterURL} />
+            </div>
+            <h2>{footerFilm.title}</h2>
+        </Footer>
         </>
     )
 }
@@ -58,16 +63,4 @@ function Sessions ({day, key}) {
         </div>     
         </>
     )
-}
-
-function Footer ({footerFilm}) {
-    return (
-<div className = 'footer'>
-    <div className = 'image-footer'>
-    <img src = {footerFilm.posterURL} />
-    </div>
-    <h2>{footerFilm.title}</h2>
-</div>
-    )
-    
 }
