@@ -163,7 +163,7 @@ height: 72px;
 .seat {
     font-family: 'Roboto';
     font-weight: 400;
-font-size: 11px;
+    font-size: 11px;
     width: 26px;
     height: 26px;
     display: flex;
@@ -173,5 +173,26 @@ font-size: 11px;
     border: 1px solid #808F9D;
     border-radius: 100%;
     margin: 0 10px 20px 10px;
+    cursor: pointer;
+}
+
+.unavailable {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 11px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+    border-radius: 100%;
+    margin: 0 10px 20px 10px;
+}
+
+.selected {
+    background: #8DD7CF;
+border: 1px solid #45BDB0;
 }
 

@@ -21,7 +21,8 @@ export default function Session () {
             {
                 seats.map((seat, index) =>
                     <Seats
-                    seat = {seat}
+                    seat = {seat.name}
+                    available= {seat.isAvailable}
                     key={index}
                      />
                 )
@@ -31,12 +32,39 @@ export default function Session () {
     )
 }
 
-function Seats({seat, key}) {
+function Seats({seat, available, key}) {
+
+    if (available) {
+        return (
+            <SelectSeats
+            seat = {seat}
+            />
+        )
+    } else {
+        return (
+            <>
+            <div className='unavailable'>
+                {seat}
+            </div>
+            </>
+        )
+    }
+    
+}
+
+function SelectSeats ({seat}) {
+    const [select, setSelect]=useState(false);
     return (
         <>
-        <div className='seat'>
-            {seat.name}
-        </div>
-        </>
+          {
+            !select ?
+            (<div className='seat' onClick={()=>setSelect(!select)}>
+            {seat}
+        </div>) :
+        (<div className='seat selected' onClick={()=>setSelect(!select)}>
+        {seat}
+    </div>)
+        }
+        </>     
     )
 }
