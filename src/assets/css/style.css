@@ -150,3 +150,28 @@ width: 48px;
 height: 72px;
 }
 
+.seats {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 15px;
+    margin-top: 157px;
+    flex-wrap: wrap;
+}
+
+.seat {
+    font-family: 'Roboto';
+    font-weight: 400;
+font-size: 11px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C3CFD9;
+    border: 1px solid #808F9D;
+    border-radius: 100%;
+    margin: 0 10px 20px 10px;
+}
+

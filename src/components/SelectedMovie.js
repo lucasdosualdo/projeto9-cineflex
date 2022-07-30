@@ -1,16 +1,20 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 
 export default function SelectedMovie () {
     const [days, setDays]= useState([]);
-    const [session, setSession]= useState({});
+    const [footerFilm, setFooterFilm]= useState({});
     const {idFilme} = useParams();
-const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`);
-promise.then(response => {
-setDays(response.data.days)
-setSession(response.data)
-})
+
+    useEffect(()=>{
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`);
+        promise.then(response => {
+        setDays(response.data.days)
+        setFooterFilm(response.data)
+    
+    });
+}, [])
     return (
         <>
          <div className='select'>
@@ -26,12 +30,16 @@ setSession(response.data)
              )}
         </div>
         <Footer
-        session = {session}/>
+        footerFilm = {footerFilm}/>
         </>
     )
 }
 
 function Sessions ({day, key}) {
+    
+    
+
+
     return (
         <>   
         <div className='weekday-date'>
@@ -40,9 +48,11 @@ function Sessions ({day, key}) {
         <div className='showtimes'>
             {
                 (day.showtimes).map( value =>
+                    <Link to={`/assentos/${value.id}`}>
                     <div className='name'>
                     <p>{value.name}</p>
                     </div>
+                    </Link>
                 )
             }
         </div>     
@@ -50,13 +60,13 @@ function Sessions ({day, key}) {
     )
 }
 
-function Footer ({session}) {
+function Footer ({footerFilm}) {
     return (
 <div className = 'footer'>
     <div className = 'image-footer'>
-    <img src = {session.posterURL} />
+    <img src = {footerFilm.posterURL} />
     </div>
-    <h2>{session.title}</h2>
+    <h2>{footerFilm.title}</h2>
 </div>
     )
     
