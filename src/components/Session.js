@@ -62,7 +62,6 @@ export default function Session () {
             <h2>{footerDate.weekday} - {footerName.name}</h2>
             </div> 
         </Footer>
-
         </>
     )
 }

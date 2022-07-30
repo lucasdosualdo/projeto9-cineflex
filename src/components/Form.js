@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Form () {
 const [name, setName]=useState('');
@@ -6,6 +7,13 @@ const [cpf, setCpf]=useState('');
 
     function handleForm (e) {
         e.preventDefault();
+        const body = {
+            name,
+            cpf
+        }
+
+        const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', body);
+        request.then()
 
     }
     return (
@@ -32,10 +40,6 @@ const [cpf, setCpf]=useState('');
             <p>Reservar assento(s)</p>
         </button>
         </div>
-        </form>
-
-        
-        
-       
+        </form>    
     )
 }
