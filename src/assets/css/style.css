@@ -33,6 +33,20 @@ h3 {
     color: #293845;
 }
 
+h4 {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+    color: #247A6B;
+}
+
+h5 {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+    color: #293845;
+    margin-bottom: 10px;
+}
 
 .select {
     display: flex;
@@ -42,8 +56,7 @@ h3 {
     height: 90px;
     position: fixed;
     background-color: white;
-    top: 67px;
-    
+    top: 67px;  
 }
 
 .header {
@@ -242,7 +255,22 @@ cursor: pointer;
 border: none;
 }
 
+.info-success {
+    width: 100%;
+    margin-top: 157px;
+    padding-left: 30px;
+    color: #293845;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 22px;
+}
 
+.info-success div {
+margin-bottom: 40px;
+}
 
-
-
+.centralizar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

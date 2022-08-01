@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 
-export default function Form ({ids}) {
+export default function Form ({ids, title, date, time, selectedSeats, finish}) {
 const [name, setName]=useState('');
 const [cpf, setCpf]=useState('');
 let navigate= useNavigate();
@@ -77,9 +77,18 @@ function handleForm (e) {
         cpf
     }
     const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', body);
-    request.then(
-        navigate('/')
-    )
+    request.then(response => {
+        finish({
+            ids: ids,
+            title: title,
+            date: date,
+            time: time,
+            selectedSeats: selectedSeats,
+            name: name,
+            cpf: cpf
+        })
+        navigate('/sucesso')
+    });
 }
 
     return (   

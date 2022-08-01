@@ -5,12 +5,13 @@ import Form from './Form';
 import Seats from './Seats';
 import Footer from './Footer';
 
-export default function Session () {
+export default function Session ({finish}) {
     const [seats, setSeats]=useState([]);
     const [footerName, setFooterName]=useState({});
     const [footerDate, setFooterDate]=useState({});
     const [footerImage, setFooterImage]=useState({});
     const [ids, setIds]=useState([]);
+    const [selectedSeats, setSelectedSeats]=useState([]);
     console.log(ids, 'session')
     const {idSessao} = useParams();
 
@@ -38,6 +39,8 @@ export default function Session () {
                     key={index}
                     ids={ids}
                     setIds={setIds}
+                    selectedSeats={selectedSeats}
+                    setSelectedSeats={setSelectedSeats}
                      />
                 )
             }
@@ -56,7 +59,14 @@ export default function Session () {
                 <p>Indisponível</p>
             </div>
         </div>
-        <Form ids = {ids}/>
+        <Form 
+        ids = {ids}
+        title={footerImage.title}
+        date={footerDate.date}
+        time={footerName.name}
+        finish = {finish}
+        selectedSeats={selectedSeats}
+        />
         <Footer>
         <div className = 'image-footer'>
             <img src = {footerImage.posterURL} />
