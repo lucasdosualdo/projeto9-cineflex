@@ -12,8 +12,7 @@ export default function SelectedMovie () {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`);
         promise.then(response => {
         setDays(response.data.days)
-        setFooterFilm(response.data)
-    
+        setFooterFilm(response.data)  
     });
 }, [])
     return (
@@ -41,10 +40,6 @@ export default function SelectedMovie () {
 }
 
 function Sessions ({day, key}) {
-    
-    
-
-
     return (
         <>   
         <div className='weekday-date'>

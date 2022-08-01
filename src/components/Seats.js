@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-export default function Seats({seat, available, id, ids, setIds, key}) {
-    
+export default function Seats({seat, available, id, ids, setIds, key}) {   
     if (available) {
         return (
             <SelectSeats
@@ -33,8 +32,7 @@ function teste () {
         let newIds=ids.filter((value)=>value!==id)
         setIds([...newIds])
         console.log(ids, 'retirou')
-    }
-    
+    }   
 }
     return (
         <>
@@ -46,11 +44,9 @@ function teste () {
         </div>)
         :
         (<div className='seat selected' onClick={()=>teste()}>
-        {seat}
-       
+        {seat}      
     </div>)
         }
         </>     
     )
 }
-
